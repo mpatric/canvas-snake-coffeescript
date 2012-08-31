@@ -1,0 +1,72 @@
+body {
+  font-family: Helvetica, Arial, sans-serif;
+  color: black;
+  font-size: 14px;
+  margin: 0 auto;
+  padding: 0;
+  width: 500px;
+}
+
+header, footer {
+  margin: 10px 0;
+  height: 20px;
+}
+header .title {
+  float: left;
+}
+header .score {
+  float: right;
+}
+footer .copyright {
+  float: left;
+}
+footer .source {
+  float: right;
+}
+
+div#main {
+  clear: left;
+  position: relative;
+}
+
+div#buttons {
+  position: absolute;
+  width: 500px;
+  top: 390px;
+}
+div#buttons button {
+  margin: 0 auto;
+  width: 150px;
+  display: block;
+  height: 60px;
+  font-size: 20px;
+}
+
+div#highscores {
+  position: absolute;
+  width: 500px;
+  font-size: 20px;
+}
+div#highscores table {
+  margin: 50px auto;
+  border-collapse: collapse;
+  color: black;
+  background-color: rgba(255, 255, 255, 0.75);
+}
+div#highscores table th {
+  text-align: center;
+  text-decoration: underline;
+}
+div#highscores table td {
+  text-align: center;
+  width: 50px;
+}
+div#highscores table tr.player {
+  background: gold;
+  text-shadow: 0px 0px 5px white;
+}
+
+canvas#game {
+  background: #FFC;
+  border: 1px solid black;
+}
