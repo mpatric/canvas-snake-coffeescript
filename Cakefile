@@ -2,8 +2,11 @@ fs = require 'fs'
 {exec} = require 'child_process'
 
 appFiles  = [
-  'main'
+  'util'
+  'canvas'
   'snake'
+  'fx'
+  'main'
 ]
 
 outputFile = 'game'
