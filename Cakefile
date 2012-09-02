@@ -11,7 +11,7 @@ appFiles  = [
 
 outputFile = 'game'
 
-task 'build', 'Build single javascript file from source files', ->
+task 'build', 'Build single JavaScript file from source files', ->
   exec "mkdir -p lib", (err, stdout, stderr) ->
     throw err if err
     appContents = new Array remaining = appFiles.length
