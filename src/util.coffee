@@ -1,3 +1,10 @@
+find = (array, test) ->
+  for i in [0...array.length]
+    return array[i] if test(array[i])
+
+arrayHas = (array, test) ->
+  find(array, test) != undefined
+
 randomNumber = (options) ->
   Math.floor(Math.random() * options)
 
@@ -9,9 +16,3 @@ registerEventHandler = (node, event, handler) ->
     node.addEventListener(event, handler, false)
   else
     node.attachEvent("on" + event, handler)
-
-supports_local_storage = () ->
-  try
-    return 'localStorage' in window && window['localStorage'] != null
-  catch e
-    return false

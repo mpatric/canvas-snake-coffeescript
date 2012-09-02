@@ -11,6 +11,9 @@ initial_snake_length = 5
 snake_grows_after_ticks = 10
 segments_added_per_mushroom = 10
 
+# globals
+ticker = ticks = score = playField = snake = keyboardController = retroCanvas = scoreboard = gameOver = null
+
 readyStateCheckInterval = setInterval(
   -> 
     if document.readyState == "complete"
@@ -19,49 +22,45 @@ readyStateCheckInterval = setInterval(
   10)
 
 init = () ->
-  console.log 'init'
   startButton = document.getElementById('startButton')
-  # scoreboard = new Scoreboard
-  # scoreboard.render
+  scoreboard = new Scoreboard
+  scoreboard.render()
   registerEventHandler startButton, 'click', ->
     start()
 
 start = () ->
-  console.log 'start'
   stop()
   document.getElementById('overlay').style.display = 'none'
-  # playField = new PlayField(board_dimension, board_dimension)
-  # snake = new Snake(initial_snake_length)
-  # keyboardController = new KeyboardController()
-  # retroCanvas = new RetroCanvas(document.getElementById('game'), playField.width, playField.height)
+  playField = new PlayField(board_dimension, board_dimension)
+  snake = new Snake(initial_snake_length)
+  keyboardController = new KeyboardController()
+  retroCanvas = new RetroCanvas(document.getElementById('game'), playField.width, playField.height)
   ticks = 0
   score = -1
-  # updateScore(0)
+  updateScore(0)
   gameOver = false
   ticker = setInterval(tick, tick_period)
 
 stop = () ->
-  console.log 'stop'
   clearInterval(ticker) if ticker?
 
 tick = () ->
   ticks++
-  # if snake.alive
-  #   updateScore(score + tick_score)
-  #   snake.move()
-  # playField.update()
-  # playField.draw()
-  # snake.draw()
-  # if !gameOver && !snake.alive
-  #   gameOver = true
-  #   scoreboard.addScore(Math.floor(score))
-  #   scoreboard.render()
-  #   document.getElementById('startButton').innerHTML = 'Play Again'
-  #   document.getElementById('overlay').style.display = 'block'
+  if snake.alive
+    updateScore(score + tick_score)
+    snake.move()
+  playField.update()
+  playField.draw()
+  snake.draw()
+  if !gameOver && !snake.alive
+    gameOver = true
+    scoreboard.addScore(Math.floor(score))
+    scoreboard.render()
+    document.getElementById('startButton').innerHTML = 'Play Again'
+    document.getElementById('overlay').style.display = 'block'
 
 updateScore = (newScore) ->
-  oldScore = score
-  score = newScore
+  [oldScore, score] = [score, newScore]
   if Math.floor(oldScore) != Math.floor(score)
     scoreSpan = document.getElementById('score')
     scoreSpan.innerHTML = Math.floor(score)
